@@ -1,0 +1,55 @@
+Lab 5: Static Code Analysis – Reflection
+1. Easiest vs Hardest Issues
+
+Easiest:
+
+Fixing PEP 8 spacing, unused imports, and naming conventions (simple formatting changes).
+
+Adding docstrings and switching to f-strings was mechanical.
+
+Hardest:
+
+Mutable default argument bug (logs=[]) — needed understanding of Python memory behavior.
+
+Bare except — required identifying correct exceptions.
+
+Replacing eval() and adding context managers — conceptually harder as they affect program behavior.
+
+2. False Positives
+
+Global variable warning (W0603) in load_data() — Pylint flagged it, but it’s intentional here since the function must update global stock_data.
+
+This shows static tools give guidelines, not absolute rules.
+
+3. Integrating Static Analysis Tools
+
+Local:
+
+Add pre-commit hooks to run Pylint, Flake8, Bandit before commits.
+
+Enable IDE linting for instant feedback.
+
+CI/CD:
+
+Run linters in GitHub Actions or GitLab CI; fail builds if score < 9.
+
+Generate reports for code review.
+
+Best Practice:
+Run Flake8 locally, Pylint + Bandit in CI for thorough checks.
+
+4. Observed Improvements
+
+Code Quality:
+
+Pylint score improved from 4.8 → 9.8/10; all Bandit and PEP 8 issues resolved.
+
+Readability:
+
+Clearer snake_case names, f-strings, and docstrings improved clarity.
+
+Robustness:
+
+Added type checks, specific exceptions, and safe file handling.
+
+Removed eval(), fixed mutable default args, prevented KeyErrors.
